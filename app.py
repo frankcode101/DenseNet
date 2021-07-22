@@ -34,12 +34,14 @@ else:
                    'Ankle boot']
     st.image(image, use_column_width=True)
     predictions = import_and_predict(image, model)
-    score = tf.nn.softmax(predictions[0])
+    score = 100*np.max(predictions[0])
     st.write(
-    "This image most likely belongs to {} with a {:.2f} percent confidence."
-    .format(class_names[np.argmax(score)], 100 * np.max(score))
+    "This image most likely belongs to {} with a {:.2f} percent."
+    .format(class_names[np.argmax(predictions[0])], (score))
 )
     print(
-    "This image most likely belongs to {} with a {:.2f} percent confidence."
-    .format(class_names[np.argmax(score)], 100 * np.max(score))
+    "This image most likely belongs to {} with a {:.2f} percent."
+    .format(class_names[np.argmax(predictions[0])], (score))
 )
+
+
